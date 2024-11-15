@@ -27,6 +27,10 @@ const usersModel = mongoose.Schema({
     country:{
         type: String,
         required: true
+    }, 
+    password: {
+        type: String,
+        required: true
     }
 },{
     versionKey: false
@@ -46,6 +50,7 @@ module.exports = mongoose.model('model', usersModel)
 "age": 18,x
 "active": true,
 "gender": "Male",
-"country": "Colombia"
+"country": "Colombia",
+"password": "Ucategui.BIT"
 }
 */  
