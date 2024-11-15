@@ -3,6 +3,7 @@ const router = express.Router()
 const productsController = require('../controllers/product.controller')
 // const contentsController = require ('../controllers/content.controller')
 const usersController = require('../controllers/user.controller')
+const loginController = require ('../controllers/login.controller')
 
 router.get('/users', usersController.getUsers)
 router.get('/user/:id', usersController.getOneUser)
