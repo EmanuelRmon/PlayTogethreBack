@@ -1,5 +1,6 @@
 const userModel = require("../models/user.model");
-
+const jwt = require ("jsonwebtoken")
+require ("dotenv").config ()
 exports.login = async (req, res) => {
     try {
         let infoUser = req.body
@@ -8,7 +9,14 @@ exports.login = async (req, res) => {
         if (user) {
             let clave = infoUser.password
             if (user.password == clave) {
-                res.send ({msj: "ingreso correto"})
+                let SECRET_KEY_JWT = process.env.SECRET_KEY_JWT
+                let = payLoad = {
+                    id: user._id,
+                    nombre: user.nombre,
+                    roll: user.roll
+                }
+                let token = jwt.sign (payLoad, SECRET_KEY_JWT, {expiresIn: "24h"})
+                res.status({token})
             } else {
                 res.send ({msj: "credenciales invalidas"})
             }

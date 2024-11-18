@@ -10,6 +10,7 @@ router.get('/user/:id', usersController.getOneUser)
 router.post('/addUser', usersController.addUser)
 router.delete('/deleteUser/:id', usersController.deleteUser)
 router.put('/updateUser/:id', usersController.updateUser)
+router.post ('/validacion', loginController.login)
 
 //------------------------------------------- product -----------------------------------------------------
 
