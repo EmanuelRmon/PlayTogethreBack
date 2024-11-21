@@ -11,7 +11,7 @@ exports.verificar = async (req, res, next) => {
                 res.send ({error: "Ha ocurrido algo comunicate con el admin"})
             }
 
-        }
+        })
        
        
     } catch (error) {
