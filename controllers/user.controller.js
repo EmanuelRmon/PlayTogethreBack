@@ -29,14 +29,16 @@ exports.getOneUser = async(req, res)=>{
 }
 exports.addUser = async(req, res)=>{
     try {
-        regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ //---------validacion de email bien escrito, (se puede poner en el env mejor)----------------//
+        regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/ //---------validacion de email bien escrito, (se puede poner en el env mejor)----------------//
 
         let user = req.body
+        if (!user.imagen) {
+            user.imagen = "https://t3.ftcdn.net/jpg/05/17/79/88/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg"
+        }
         let email = user.email
         if (regexEmail.test(email)) {
             let searchUser = await userModel.findOne({email: email})
-            
-            
+                 
             if (!searchUser) {
     
                 let newUser = new userModel(user)
@@ -75,34 +77,35 @@ exports.deleteUser = async(req, res)=>{
         res.send({error:"Something happened, get in touch with admin"})   
     }
 }
-exports.updateUser = async(req, res)=>{
+
+exports.updateUser = async (req, res)=> {
     try {
-        let id = req.params.id
-        let update = req.body
-        
-        if (id.length == 24) {
-            if (user) {
-                let user = await userModel.findOne({_id: id})
-                
-                Object.assign(user, update)
-                // user.name = update.name
-                // user.lastname = update.lastname
-                // user.email = update.email
-                // user.age = update.age
-                // user.gender = update.gender
-                // user.country = update.country
-
-                let updatedUser = await userModel.updateOne({_id: id}, user)
-                res.json(user)
-            } else{
-                res.send({error: "not an existing id"})
+        let regexEmail = /[a-zA-Z0-9]+([.][a-zA-Z0-9]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)[.][a-zA-Z]{2,5}/
+        let id = await req.params.id
+        let body = req.body
+        if (regexEmail.test(body.email)) {
+            if (id.length == 24) {
+                let user = await userModel.findById(id)
+                if (user) {
+                    // user.nombre = body.nombre
+                    // user.apellido = body.apellido
+                    // user.edad = body.edad
+                    // user.activo = body.activo
+                    Object.assign(user, body)
+                    await userModel.findOneAndUpdate({_id:id},user)
+                    res.status(200).send("modificado")
+                } else {
+                    res.status(400).send({error:"Usuario no encontrado"})
+                }
+            } else {
+                console.log("Id proporcionada no es correcta");
+                res.status(400).send({error:"Id no contiene los caracteres suficientes"})
             }
-        }else{
-            res.send({error: "not a valid id"})
+        } else {
+            res.status(400).send({error: "Correo Invalido"})
         }
-
     } catch (error) {
         console.log(error);
-        res.send({error:"Something happened, get in touch with admin"})   
+        res.status(500).send({error:"Ha ocurrido un error comunicate con el admin"})
     }
 }

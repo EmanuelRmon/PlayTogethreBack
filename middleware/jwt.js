@@ -1,3 +1,7 @@
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
+
+
 exports.verificar = async (req, res, next)=> {
     try {
        let token = req.headers.authorization

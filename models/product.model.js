@@ -28,6 +28,10 @@ const productsModel = mongoose.Schema({
     serie: {
         type: String,
         required: true
+    },
+    imagen: {
+        type: String,
+        required: true
     }
 },{
     versionKey: false
@@ -43,6 +47,7 @@ module.exports = mongoose.model('product', productsModel)
     "descripcion": 'TV OLED de 43" marca Samsung',
     "tipo": "electrodomestico",
     "marca": "Samsung",
-    "serie":"tv1230LED43"
+    "serie":"tv1230LED43",
+    "imagen": ""
 }
 */

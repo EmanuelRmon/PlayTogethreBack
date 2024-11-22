@@ -31,6 +31,10 @@ const usersModel = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    imagen: {
+        type: String,
+        required: true
     }
 },{
     versionKey: false
@@ -51,6 +55,7 @@ module.exports = mongoose.model('model', usersModel)
 "active": true,
 "gender": "Male",
 "country": "Colombia",
-"password": "Ucategui.BIT"
+"password": "Ucategui.BIT",
+"imagen":"https://t3.ftcdn.net/jpg/05/17/79/88/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg"
 }
 */  
