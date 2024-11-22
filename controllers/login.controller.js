@@ -7,9 +7,9 @@ exports.login = async (req, res) => {
     try {
         let regexEmail = /[a-zA-Z0-9]+([.][a-zA-Z0-9]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)[.][a-zA-Z]{2,5}/
         let infoUser = req.body
-        let user = await userModel.findOne ({email: infoUser.email})
+    
         if (regexEmail.test(email)) {
-
+            let user = await userModel.findOne ({email: infoUser.email})
            if (user) {
                 let clave = infoUser.password
                 if (user.password == clave) {
