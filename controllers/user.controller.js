@@ -77,7 +77,6 @@ exports.deleteUser = async(req, res)=>{
         res.send({error:"Something happened, get in touch with admin"})   
     }
 }
-
 exports.updateUser = async (req, res)=> {
     try {
         let regexEmail = /[a-zA-Z0-9]+([.][a-zA-Z0-9]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)[.][a-zA-Z]{2,5}/

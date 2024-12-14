@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const productsController = require('../controllers/product.controller')
-// const contentsController = require ('../controllers/content.controller')
+const gameController = require('../controllers/favoriteGame.controller')
 const usersController = require('../controllers/user.controller')
 const loginController = require ('../controllers/login.controller')
 const jwtMiddelware = require ("../middleware/jwt")
@@ -23,11 +23,11 @@ router.put('/updateproduct/:id', jwtMiddelware.verificar, productsController.upd
 
 // ---------------------------------------- Favorite games --------------------------------------------------------
 
-// router.get('/games', contentsController.getContents)
-// router.get('/game/:id', contentsController.getOneContent)
-// router.post('/addgame', jwtMiddelware.verificar, contentsController.addContent)
-// router.delete('/deletegame/:id', jwtMiddelware.verificar, contentsController.deleteContent)
-// router.put('/updategame/:id', jwtMiddelware.verificar,  contentsController.updateContent)
+router.get('/games', gameController.getgames)
+router.get('/game/:id', gameController.getOneGame)
+router.post('/addgame', gameController.addGame)
+router.delete('/deletegame/:id', jwtMiddelware.verificar, gameController.deleteGame)
+router.put('/updategame/:id', jwtMiddelware.verificar,  gameController.updateGame)
 
 
 

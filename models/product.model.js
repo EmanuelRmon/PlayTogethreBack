@@ -11,7 +11,7 @@ const productsModel = mongoose.Schema({
     },
     disponible: {
         type: Boolean,
-        required: true
+        required: false
     },
     descripcion:{
         type: String,
@@ -19,15 +19,15 @@ const productsModel = mongoose.Schema({
     },
     tipo: {
         type: String,
-        required: true
+        required: false
     },
     marca:{
         type: String,
-        required: true
+        required: false
     },
     serie: {
         type: String,
-        required: true
+        required: false
     },
     imagen: {
         type: String,
