@@ -2,13 +2,19 @@ const productsModel = require('../models/product.model')
 
 exports.getProducts = async(req, res)=>{
     try {
-        let dataProducts = await productsModel.find()
-        res.json(dataProducts)
-
-    } catch (error) {
+        let nombre = req.params.nombre
+        if (nombre) {
+            let data = await productModel.find({nombre:{$regex: nombre, $options: 'i'}})
+            res.status(200).json(data)
+        } else {
+          let dataProducts = await productModel.find();
+          res.status(200).json(dataProducts);
+    
+        }
+      } catch (error) {
         console.log(error);
-        res.send({error: "Ha ocurrido algo comunicate con el admin"})
-    }
+        res.status(500).send({ error: "Ha ocurrido algo comunicate con el admin" });
+      }
 }
 exports.getOneProduct = async(req, res)=>{
     try {

@@ -1,27 +1,24 @@
-require('dotenv').config()
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
+exports.desencriptarToken = async (req, res, next)=> {
+    let token = req.headers.authorization
+    if (token) {
+        token = token.split(' ')[1]
 
-exports.verificar = async (req, res, next)=> {
-    try {
-       let token = req.headers.authorization
-
-       if (token != undefined) { 
-           token = token.split(' ')[1]
-            let SECRET_KEY_JWT = process.env.SECRET_KEY_JWT
-           jwt.verify( token, SECRET_KEY_JWT, (error, decoded)=> {
-
-            if (error) {
-                res.status(400).send({error: "Token proporcionado invalido"})
+        let JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
+        jwt.verify(token, JWT_SECRET_KEY , (error, decoded)=>{
+            
+            if (error) {                
+                res.status(401).send({error:"Token invalido"})
+            } else {
+                req.usuario = decoded
+                next()
             }
-             req.usuario = decoded
-            next()
-           })
-       } else {
-        res.status(400).send({error: "Token no proporcionado"})
-       }
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({error: "Ha ocurrido algo comunicate con el admin"})
+        })
+
+    } else {
+        res.status(401).send({error:"Token no suministrado"})
     }
+
 }

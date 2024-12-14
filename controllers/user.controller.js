@@ -1,12 +1,14 @@
 const userModel = require('../models/user.model')
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
 exports.getUsers = async(req, res)=>{
     try {
-        let dataUsers = await userModel.find()
-        res.json(dataUsers)
+        let data = await userModel.find()
+        res.status(200).json(data)
     } catch (error) {
         console.log(error);
-        res.send({error:"Something happened, get in touch with admin"})       
+        res.status(500).send({error:"Ha ocurrido un error comunicate con el admin"})
     }
 }
 exports.getOneUser = async(req, res)=>{

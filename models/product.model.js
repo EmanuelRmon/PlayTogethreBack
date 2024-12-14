@@ -43,11 +43,6 @@ module.exports = mongoose.model('product', productsModel)
 {
     "nombre": "televisor",
     "precio": 1500000,
-    "disponible": true,
-    "descripcion": 'TV OLED de 43" marca Samsung',
-    "tipo": "electrodomestico",
-    "marca": "Samsung",
-    "serie":"tv1230LED43",
     "imagen": ""
 }
 */
