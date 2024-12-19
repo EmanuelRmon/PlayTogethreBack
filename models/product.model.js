@@ -11,7 +11,7 @@ const productsModel = mongoose.Schema({
     },
     disponible: {
         type: Boolean,
-        required: true
+        required: false
     },
     descripcion:{
         type: String,
@@ -19,15 +19,15 @@ const productsModel = mongoose.Schema({
     },
     tipo: {
         type: String,
-        required: true
+        required: false
     },
     marca:{
         type: String,
-        required: true
+        required: false
     },
     serie: {
         type: String,
-        required: true
+        required: false
     },
     imagen: {
         type: String,
@@ -41,13 +41,8 @@ module.exports = mongoose.model('product', productsModel)
 
 /*
 {
-    "nombre": "televisor",
-    "precio": 1500000,
-    "disponible": true,
-    "descripcion": 'TV OLED de 43" marca Samsung',
-    "tipo": "electrodomestico",
-    "marca": "Samsung",
-    "serie":"tv1230LED43",
-    "imagen": ""
+    "nombre": "Mortal Kombat 1 (PC)",
+    "precio": "82.000 COP",
+    "imagen": "https://products.eneba.games/resized-products/3oAoBB--byY83zfMLoB4iFxNV3e-zyTjTfPuIIBEHBI_350x200_2x-0.jpg"
 }
 */

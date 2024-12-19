@@ -15,9 +15,9 @@ router.post ('/validacion', loginController.login)
 
 //------------------------------------------- product -----------------------------------------------------
 
-router.get('/products', productsController.getProducts)
+router.get('/products/nombre?', productsController.getProducts)
 router.get('/product/:id', productsController.getOneProduct)
-router.post('/addproduct', jwtMiddelware.verificar, productsController.addProduct)
+router.post('/addproduct', productsController.addProduct)
 router.delete('/deleteproduct/:id', jwtMiddelware.verificar, productsController.deleteProduct)
 router.put('/updateproduct/:id', jwtMiddelware.verificar, productsController.updateProduct)
 
