@@ -1,3 +1,5 @@
+const favoriteGameModel = require('../models/favoriteGame.model')
+const productModel = require('../models/product.model')
 const productsModel = require('../models/product.model')
 
 exports.getProducts = async(req, res)=>{
@@ -80,10 +82,10 @@ exports.updateProduct = async (req, res)=>{
         let id = req.params.id
         let update = req.body
         if (id.length == 24) {
-            let product = await productsModel.findById(id)
-            if (product) {
-                Object.assign(product, update)
-                let updateProduct = await productsModel.updateOne({_id: id}, product)
+            let updateProduct = await productModel.findById(id)
+            if (updateProduct) {
+                Object.assign(game, update)
+                let updateProduct = await productModel.updateOne({_id: id}, product)
                 res.json(updateProduct)
             }else{
                 res.send({error: "No se escuentra ningun producto"})

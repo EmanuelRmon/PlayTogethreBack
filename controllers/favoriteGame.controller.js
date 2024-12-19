@@ -74,11 +74,11 @@ exports.deleteGame = async (req, res)=> {
 exports.updateGame = async (req, res) => {
     try {
         let id = req.params.id
-        let game = req.body
+        let newGame = req.body
         if (id.length == 24) {
             let game = await gameModel.findById(id)
             if (game) {
-                Object.assign(game, update)
+                Object.assign(game, newGame)
                 let updateGame = await gameModel.updateOne({_id: id}, game)
                 res.json(updateGame)
             }else{
