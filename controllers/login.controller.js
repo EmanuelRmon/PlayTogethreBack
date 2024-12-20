@@ -16,7 +16,7 @@ exports.login = async (req, res) => {
                 }
                 let JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
 
-                let token = jwt.sign(payload, JWT_SECRET_KEY, {expiresIn:"1h"})
+                let token = jwt.sign(payload, JWT_SECRET_KEY, {expiresIn:"24h"})
                 res.status(200).json(token)
             } else {
                 res.status(400).send({error:"Password incorrecto!"})
