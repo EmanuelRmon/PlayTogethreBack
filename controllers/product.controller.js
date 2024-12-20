@@ -39,8 +39,8 @@ exports.getOneProduct = async(req, res)=>{
 exports.addProduct = async(req, res)=>{
     try {
         let product = req.body
-        let serie = product.serie
-        let buscarproducto = await productsModel.findOne({serie: serie})
+        let nombre = product.nombre
+        let buscarproducto = await productsModel.findOne({nombre: nombre})
 
         if (!buscarproducto) {
             let newProduct = new productsModel(product)
@@ -79,23 +79,20 @@ exports.deleteProduct = async (req, res)=>{
 }
 exports.updateProduct = async (req, res)=>{
     try {
-        let id = req.params.id
+        let nombre = req.params.nombre
         let update = req.body
-        if (id.length == 24) {
-            let updateProduct = await productModel.findById(id)
-            if (updateProduct) {
-                Object.assign(game, update)
-                let updateProduct = await productModel.updateOne({_id: id}, product)
-                res.json(updateProduct)
-            }else{
-                res.send({error: "No se escuentra ningun producto"})
-            }
-        }else{
-            res.send({error: "Id incorrecto"})
+        let updateProduct = await productModel.findOne({nombre : nombre});
+        if (updateProduct) {
+            Object.assign(updateProduct, update)
+            await updateProduct.save()
+            res.json(updateProduct)
+        } else {
+            res.status(404).send({error: "No se encuentra ningún producto"})
+            console.log(update);
+            
         }
-
     } catch (error) {
         console.log(error);
-        res.send({error: "Ha ocurrido algo comunicate con el admin"})
+        res.status(500).send({error: "Ha ocurrido algo, comunícate con el administrador"})
     }
 }

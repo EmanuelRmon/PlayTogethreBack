@@ -12,15 +12,15 @@ router.get('/user/:id', usersController.getOneUser)
 router.post('/addUser', usersController.addUser)
 router.delete('/deleteUser/:id', usersController.deleteUser)
 router.put('/updateUser/:id', usersController.updateUser)
-router.post ('/validacion', loginController.login)
+router.post('/validacion', loginController.login)
 
 //------------------------------------------- product -----------------------------------------------------
 
-router.get('/products',desencriptarToken, productsController.getProducts)
+router.get('/products/:nombre?',desencriptarToken, productsController.getProducts)
 router.get('/product/:id', productsController.getOneProduct)
 router.post('/addproduct', productsController.addProduct)
 router.delete('/deleteproduct/:id', productsController.deleteProduct)
-router.put('/updateproduct/:id', productsController.updateProduct)
+router.put('/updateproduct', productsController.updateProduct)
 
 // ---------------------------------------- Favorite games --------------------------------------------------------
 

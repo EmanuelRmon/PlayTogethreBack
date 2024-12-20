@@ -1,22 +1,25 @@
+const e = require("express");
 const userModel = require("../models/user.model");
 const jwt = require ("jsonwebtoken")
-require ("dotenv").config ()
+require ("dotenv")
 
 
 exports.login = async (req, res) => {
     try {
-        let body = req.body
-        let user = await userModel.findOne({email: body.email})
-        if (user) {
-            if (user.password == body.password) {
+        let data = req.body
+        console.log();
+        
+        let user = await userModel.findOne({email:data.email})
+        if(user){
+            if (user.password == data.password) {
 
                 let payload = {
                     id: user._id,
-                    name: user.name,
+                    name: user.name
                 }
-                let JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
+                let JWT_SECRET_KEY = process.env.SECRET_KEY_JWT
 
-                let token = jwt.sign(payload, JWT_SECRET_KEY, {expiresIn:"1h"})
+                let token = jwt.sign(payload, JWT_SECRET_KEY, {expiresIn:"24h"})
                 res.status(200).json(token)
             } else {
                 res.status(400).send({error:"Password incorrecto!"})

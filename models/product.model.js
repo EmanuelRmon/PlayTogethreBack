@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { link } = require('../routes/router')
 
 const productsModel = mongoose.Schema({
     nombre: {
@@ -6,7 +7,7 @@ const productsModel = mongoose.Schema({
         required: true
     },
     precio: {
-        type: Number,
+        type: String,
         required: true
     },
     disponible: {
@@ -25,11 +26,11 @@ const productsModel = mongoose.Schema({
         type: String,
         required: false
     },
-    serie: {
-        type: String,
-        required: false
-    },
     imagen: {
+        type: String,
+        required: true
+    },
+    link: {
         type: String,
         required: true
     }
@@ -41,8 +42,9 @@ module.exports = mongoose.model('product', productsModel)
 
 /*
 {
-    "nombre": "televisor",
-    "precio": 1500000,
-    "imagen": ""
+    "nombre": "Marvel's Spider-Man 2 (PS5)",
+    "precio": "202.500",
+    "imagen": "https://products.eneba.games/resized-products/zvgANbZx9d5gtMFT6ME6ntFeA5uzXdsEObDJdxeZ1-Q_350x200_2x-0.jpg",
+    "link": "https://www.eneba.com/psn-marvels-spider-man-2-ps5-psn-key-latam"
 }
 */
