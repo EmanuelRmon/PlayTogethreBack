@@ -5,35 +5,27 @@ require ("dotenv").config ()
 
 exports.login = async (req, res) => {
     try {
-        let regexEmail = /[a-zA-Z0-9]+([.][a-zA-Z0-9]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)[.][a-zA-Z]{2,5}/
-        let infoUser = req.body
-    
-        if (regexEmail.test(email)) {
-            let user = await userModel.findOne ({email: infoUser.email})
-           if (user) {
-                let clave = infoUser.password
-                if (user.password == clave) {
-                    let SECRET_KEY_JWT = process.env.SECRET_KEY_JWT
-                    let = payLoad = {
-                        id: user._id,
-                        nombre: user.nombre,
-                        roll: user.roll
-                    }
-                    let token = jwt.sign (payLoad, SECRET_KEY_JWT, {expiresIn: "24h"})
-                    res.send({token})
-                } else {
-                    res.send ({msj: "credenciales invalidas"})
+        let body = req.body
+        let user = await userModel.findOne({email: body.email})
+        if (user) {
+            if (user.password == body.password) {
+
+                let payload = {
+                    id: user._id,
+                    name: user.name,
                 }
+                let JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
+
+                let token = jwt.sign(payload, JWT_SECRET_KEY, {expiresIn:"1h"})
+                res.status(200).json(token)
             } else {
-                res.send ({msj: "credenciales invalidas"})
+                res.status(400).send({error:"Password incorrecto!"})
             }
         } else {
-            res.status(400).send ({error: "invalid email"})
+            res.status(400).send({error:"Email incorrecto!"})
         }
 
-
     } catch (error) {
-        console.log(error);
-        res.send ({error: "Ha ocurrido un error comunicate con el admin"})
+        res.status(500).send({error:"Ha ocurrido algo comunicate con el admin"})
     }
 }
