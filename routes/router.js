@@ -24,7 +24,7 @@ router.put('/updateproduct', productsController.updateProduct)
 
 // ---------------------------------------- Favorite games --------------------------------------------------------
 
-router.get('/games',desencriptarToken, gameController.getgames)
+router.get('/games/:name?', gameController.getgames)
 router.get('/game/:id', gameController.getOneGame)
 router.post('/addgame', gameController.addGame)
 router.delete('/deletegame/:id', gameController.deleteGame)

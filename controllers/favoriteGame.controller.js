@@ -1,12 +1,21 @@
+const favoriteGameModel = require('../models/favoriteGame.model')
 const gameModel = require ('../models/favoriteGame.model')
 
 exports.getgames = async (req, res) => {
+    
     try {
-        let dataGames = await gameModelModel.find()
-        res.json(dataGames)
+        let name = req.params.name
+        if (name) {
+            let data = await favoriteGameModel.find ({name: {$regex:name,$options:'i'}})
+            res.status(200).json(data)
+            
+        } else {
+            let dataGames = await gameModel.find()
+            res.status(200).json(dataGames)
+        }
     } catch (error) {
         console.log(error);
-        res.send({error:"Something happened, get in touch with admin"})       
+        res.status(500).send({error:"Something happened, get in touch with admin"})       
     }
 }
 

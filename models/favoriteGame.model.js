@@ -36,6 +36,4 @@ module.exports = mongoose.model ('game', gameModel)
 "imagen":"https://sm.ign.com/t/ign_es/gallery/f/fc-25-scre/fc-25-screenshots_6awn.600.jpg",
 "disponibilidad": "PS5 - XBOX Series - Nintendo Switch"
 }
-*/  
-
-
+*/
