@@ -23,7 +23,7 @@ exports.getOneGame = async (req, res) => {
     try {
         let id = req.params.id
         if (id.length == 24) {
-            let game = await gameModelModel.findOne({_id: id})
+            let game = await gameModel.findOne({_id: id})
             if (game) {
                 res.json(game)
             }else{
