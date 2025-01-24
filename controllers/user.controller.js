@@ -81,7 +81,7 @@ exports.deleteUser = async(req, res)=>{
 }
 exports.updateUser = async (req, res)=> {
     try {
-        let regexEmail = /[a-zA-Z0-9]+([.][a-zA-Z0-9]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)[.][a-zA-Z]{2,5}/
+        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/
         let id = await req.params.id
         let body = req.body
         if (regexEmail.test(body.email)) {
