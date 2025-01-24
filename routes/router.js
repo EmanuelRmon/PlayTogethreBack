@@ -1,11 +1,15 @@
 const express = require('express')
 const router = express.Router()
+
+
 const productsController = require('../controllers/product.controller')
 const gameController = require('../controllers/favoriteGame.controller')
 const usersController = require('../controllers/user.controller')
 const loginController = require ('../controllers/login.controller')
 const { desencriptarToken } = require('../middleware/jwt')
 const jwt = require('../middleware/jwt')
+
+
 
 router.get('/users',jwt.desencriptarToken, usersController.getUsers)
 router.get('/user/:id', usersController.getOneUser)

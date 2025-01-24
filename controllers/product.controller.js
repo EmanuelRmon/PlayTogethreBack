@@ -14,7 +14,7 @@ exports.getProducts = async(req, res)=>{
     
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).send({ error: "Ha ocurrido algo comunicate con el admin" });
       }
 }
@@ -32,7 +32,7 @@ exports.getOneProduct = async(req, res)=>{
             res.send({error: "Id incorrecto"})
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error: "Ha ocurrido algo comunicate con el admin"})
     }
 }
@@ -53,7 +53,7 @@ exports.addProduct = async(req, res)=>{
         
         
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error: "Ha ocurrido algo comunicate con el admin"})
     }
 }
@@ -73,7 +73,7 @@ exports.deleteProduct = async (req, res)=>{
         }
                
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error: "Ha ocurrido algo comunicate con el admin"})
     }
 }
@@ -92,7 +92,7 @@ exports.updateProduct = async (req, res)=>{
             
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).send({error: "Ha ocurrido algo, comunícate con el administrador"})
     }
 }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { link } = require('../routes/router')
+const  link  = require('../routes/router')
 
 const productsModel = mongoose.Schema({
     nombre: {

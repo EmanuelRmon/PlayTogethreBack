@@ -29,6 +29,7 @@ exports.login = async (req, res) => {
         }
 
     } catch (error) {
+        console.log(error.message);
         res.status(500).send({error:"Ha ocurrido algo comunicate con el admin"})
     }
 }
