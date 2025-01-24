@@ -20,7 +20,7 @@ router.get('/products/:nombre?',desencriptarToken, productsController.getProduct
 router.get('/product/:id', productsController.getOneProduct)
 router.post('/addproduct', productsController.addProduct)
 router.delete('/deleteproduct/:id', productsController.deleteProduct)
-router.put('/updateproduct', productsController.updateProduct)
+router.put('/updateproduct/:nombre', productsController.updateProduct)
 
 // ---------------------------------------- Favorite games --------------------------------------------------------
 
