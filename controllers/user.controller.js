@@ -7,7 +7,7 @@ exports.getUsers = async(req, res)=>{
         let data = await userModel.find()
         res.status(200).json(data)
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).send({error:"Ha ocurrido un error comunicate con el admin"})
     }
 }
@@ -25,7 +25,7 @@ exports.getOneUser = async(req, res)=>{
             res.send({error: "not a valid id"})
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error:"Something happened, get in touch with admin"})     
     }
 }
@@ -54,7 +54,7 @@ exports.addUser = async(req, res)=>{
         }
 
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error:"Something happened, get in touch with admin"})   
     }
 }
@@ -75,13 +75,13 @@ exports.deleteUser = async(req, res)=>{
             res.send({error: "not a valid id"})
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error:"Something happened, get in touch with admin"})   
     }
 }
 exports.updateUser = async (req, res)=> {
     try {
-        let regexEmail = /[a-zA-Z0-9]+([.][a-zA-Z0-9]+)@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)[.][a-zA-Z]{2,5}/
+        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/
         let id = await req.params.id
         let body = req.body
         if (regexEmail.test(body.email)) {
@@ -106,7 +106,7 @@ exports.updateUser = async (req, res)=> {
             res.status(400).send({error: "Correo Invalido"})
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).send({error:"Ha ocurrido un error comunicate con el admin"})
     }
 }

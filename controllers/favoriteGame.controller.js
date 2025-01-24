@@ -14,7 +14,7 @@ exports.getgames = async (req, res) => {
             res.status(200).json(dataGames)
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).send({error:"Something happened, get in touch with admin"})       
     }
 }
@@ -33,7 +33,7 @@ exports.getOneGame = async (req, res) => {
             res.send({error: "not a valid id"})
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error:"Something happened, get in touch with admin"})     
     }
 }
@@ -54,7 +54,7 @@ exports.addGame = async (req, res) => {
         
         
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).send({error: "Ha ocurrido algo comunicate con el admin"})
     }
 }
@@ -75,7 +75,7 @@ exports.deleteGame = async (req, res)=> {
         }
                
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error: "Ha ocurrido algo comunicate con el admin"})
     }
 }
@@ -98,7 +98,7 @@ exports.updateGame = async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.send({error: "Ha ocurrido algo comunicate con el admin"})
     }
 }
