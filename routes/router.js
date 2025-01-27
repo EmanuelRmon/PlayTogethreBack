@@ -8,6 +8,7 @@ const usersController = require('../controllers/user.controller')
 const loginController = require ('../controllers/login.controller')
 const { desencriptarToken } = require('../middleware/jwt')
 const jwt = require('../middleware/jwt')
+const newsController = require ('../controllers/news.controller')
 
 
 
@@ -34,7 +35,13 @@ router.post('/addgame', gameController.addGame)
 router.delete('/deletegame/:id', gameController.deleteGame)
 router.put('/updategame/:id', gameController.updateGame)
 
+//---------------------------------------------- News -------------------------------------------------------------
 
+router.get ('/news', newsController.getNews)
+router.get ('/getonenews/:id', newsController.getOneNews)
+router.post ('addnews', newsController.addNews)
+router.delete ('deletNews/:id', newsController.deleteNews)
+router.put ('updateNews/:id', newsController.updateNews)
 
 
 module.exports = router
