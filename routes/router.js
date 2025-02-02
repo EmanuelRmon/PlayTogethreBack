@@ -18,6 +18,7 @@ router.post('/addUser', usersController.addUser)
 router.delete('/deleteUser/:id', usersController.deleteUser)
 router.put('/updateUser/:id', usersController.updateUser)
 router.post('/validacion', loginController.login)
+router.get('/loged-user/:id', jwt.desencriptarToken, loginController.getLogedUser)
 
 //------------------------------------------- product -----------------------------------------------------
 
@@ -39,9 +40,9 @@ router.put('/updategame/:id', gameController.updateGame)
 
 router.get ('/news', newsController.getNews)
 router.get ('/getonenews/:id', newsController.getOneNews)
-router.post ('addnews', newsController.addNews)
-router.delete ('deletNews/:id', newsController.deleteNews)
-router.put ('updateNews/:id', newsController.updateNews)
+router.post ('/addnews', newsController.addNews)
+router.delete ('/deletNews/:id', newsController.deleteNews)
+router.put ('/updateNews/:id', newsController.updateNews)
 
 
 module.exports = router

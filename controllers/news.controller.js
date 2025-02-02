@@ -6,9 +6,9 @@ exports.getNews =  async (req,res) => {
         if (name) {
             let data = await newsModel.find ({name: {$regex:name,$options:'i'}})
             res.status(200).json (data)
-        }else{dataNews
+        }else{
             let dataNews = await newsModel.find()
-            res.status(200).json()
+            res.status(200).json(dataNews)
         }
     } catch (error) {
         console.log(error.message);
@@ -38,7 +38,8 @@ exports.getOneNews = async (req,res) => {
 exports.addNews = async (req,res) => {
     try {
         let newNews = req.body
-        let searchNews = await newsModel.findOne({name:newNews.name})
+        let nombre = newNews.nombre
+        let searchNews = await newsModel.findOne({nombre: nombre})
         if (!searchNews) {
             let news = new newsModel(newNews)
             await news.save()
