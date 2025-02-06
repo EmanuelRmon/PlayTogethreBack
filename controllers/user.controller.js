@@ -13,17 +13,17 @@ exports.getUsers = async(req, res)=>{
 }
 exports.getOneUser = async(req, res)=>{
     try {
-        let id = req.params.id
-        if (id.length == 24) {
-            let user = await userModel.findOne({_id: id})
+        regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/ //---------validacion de email bien escrito, (se puede poner en el env mejor)----------------//
+        if (regexEmail.test(req.params.email)) {
+            let email = req.params.email
+            let user = await userModel.findOne({email: email})
             if (user) {
                 res.json(user)
             }else{
                 res.send({error: "not an existing id"})
             }
-        }else{
-            res.send({error: "not a valid id"})
         }
+
     } catch (error) {
         console.log(error.message);
         res.send({error:"Something happened, get in touch with admin"})     

@@ -13,13 +13,11 @@ const newsController = require ('../controllers/news.controller')
 
 
 router.get('/users',jwt.desencriptarToken, usersController.getUsers)
-router.get('/user/:id', usersController.getOneUser)
+router.get('/user/:email', usersController.getOneUser)
 router.post('/addUser', usersController.addUser)
 router.delete('/deleteUser/:id', usersController.deleteUser)
-router.put('/updateUser/:id', usersController.updateUser)
+router.put('/updateUser/:email', usersController.updateUser)
 router.post('/validacion', loginController.login)
-router.get('/loged-user/:id', jwt.desencriptarToken, loginController.getLogedUser)
-
 //------------------------------------------- product -----------------------------------------------------
 
 router.get('/products/:nombre?',desencriptarToken, productsController.getProducts)
